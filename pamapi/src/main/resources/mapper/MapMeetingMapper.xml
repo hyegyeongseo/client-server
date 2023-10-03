@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.chichi.pamback.mapmeeting.MapMeetingDAO">
+
+	<resultMap id="MapMeetingMapperResultMap"
+		type="team.chichi.pamback.contacts.ContactsDTO">
+		<id property="m_RecordNum" column="m_RecordNum" />
+		<result property="u_Id" column="u_Id" />
+		<result property="c_Phone" column="c_Phone" />
+		<result property="m_Contents" column="m_Contents" />
+		<result property="m_date" column="m_date" />
+		<result property="m_time" column="m_time" />
+		<result property="m_place" column="m_place" /> 
+		<result property="HashTag" column="HashTag" />
+		<result property="m_Check" column="m_Check" />  
+	</resultMap>	
+	
+    <!-- Create -->
+    <insert id="insertMapMeeting" 
+    		parameterType="team.chichi.pamback.mapmeeting.MapMeetingDTO">
+        	INSERT INTO MAPMEETING (m_RecordNum, u_Id, c_Phone, m_Title, m_Contents, m_date, m_time, m_place, HashTag, m_Check)
+        	VALUES (#{m_RecordNum}, #{u_Id}, #{c_Phone}, #{m_Title}, #{m_Contents}, #{m_date}, #{m_time}, #{m_place}, #{HashTag}, #{m_Check})
+    </insert>
+
+    <!-- Read -->
+    <select id="getMapMeetingByUserId" parameterType="java.lang.String" resultType="team.chichi.pamback.mapmeeting.MapMeetingDTO">
+        SELECT * FROM MAPMEETING WHERE u_Id = #{u_Id}
+    </select>
+
+    <select id="getMapMeetingByUserIdAndPhone" parameterType="java.util.Map" resultType="team.chichi.pamback.mapmeeting.MapMeetingDTO">
+        SELECT * FROM MAPMEETING WHERE m_RecordNum = #{m_RecordNum} AND u_Id = #{u_Id} AND c_Phone = #{c_Phone}
+    </select>
+
+    <!-- Update -->
+    <update id="updateMapMeeting" parameterType="team.chichi.pamback.mapmeeting.MapMeetingDTO">
+        UPDATE MAPMEETING
+        SET m_Title = #{m_Title}, m_Contents = #{m_Contents}, m_date = #{m_date}, m_time = #{m_time},
+            m_place = #{m_place}, HashTag = #{HashTag}, m_Check = #{m_Check}
+        WHERE m_RecordNum = #{m_RecordNum} AND u_Id = #{u_Id} AND c_Phone = #{c_Phone}
+    </update>
+
+    <!-- Delete -->
+    <delete id="deleteMapMeeting" parameterType="java.util.Map">
+        DELETE FROM MAPMEETING WHERE m_RecordNum = #{m_RecordNum} AND u_Id = #{u_Id} AND c_Phone = #{c_Phone}
+    </delete>
+
+</mapper>

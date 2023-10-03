@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:paddingTop="100dp"
+        >
+
+        <TextView
+            android:id="@+id/textViewUserU_Id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UserID"
+            android:layout_marginRight="16dp"
+            android:fontFamily="@font/cafe24_ssurround_v2_0"
+            />
+
+        <TextView
+            android:id="@+id/textViewU_Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UserName"
+            android:layout_marginBottom="40dp"
+            />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editTextSelectU_Id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fetch_data"
+        android:fontFamily="@font/cafe24_ssurround_v2_0"
+        android:textStyle="bold"/>
+
+</LinearLayout>
+

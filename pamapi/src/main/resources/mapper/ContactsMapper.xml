@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.chichi.pamback.contacts.ContactsDAO">
+
+	<resultMap id="ContactsResultMap"
+		type="team.chichi.pamback.contacts.ContactsDTO">
+		<id property="c_Phone" column="c_Phone" />
+		<result property="u_Id" column="u_Id" />
+		<result property="c_Name" column="c_Name" />
+		<result property="c_Address" column="c_Address" />
+		<result property="c_Email" column="c_Email" />
+		<result property="c_Memo" column="c_Memo" />
+
+	</resultMap>
+
+	<select id="getContactsByUserId" parameterType="java.lang.String"
+		resultMap="ContactsResultMap">
+		SELECT * FROM contacts WHERE u_Id = #{u_Id}
+	</select>
+
+	<select id="getContactByPhoneAndUserId" parameterType="java.util.Map"
+		resultMap="ContactsResultMap">
+		SELECT * 
+		  FROM contacts 
+		 WHERE c_Phone = #{c_Phone} 
+		   AND u_Id =#{u_Id}
+	</select>
+
+
+	
+	<insert id="insertContact"
+		parameterType="team.chichi.pamback.contacts.ContactsDTO">
+		INSERT INTO contacts (c_Phone, u_Id, c_Name, c_Address, c_Email, c_Memo)
+		              VALUES (#{c_Phone}, #{u_Id}, #{c_Name}, #{c_Address}, #{c_Email}, #{c_Memo})
+	</insert>
+	
+	
+
+ 
+ 	<update id="updateContact"
+		parameterType="team.chichi.pamback.contacts.ContactsDTO">
+	 UPDATE contacts
+		SET c_Name = #{c_Name}, 
+		    c_Address = #{c_Address}, 
+		    c_Email = #{c_Email},
+			c_Memo = #{c_Memo}
+	  WHERE c_Phone = #{c_Phone} 
+		AND u_Id = #{u_Id}
+	</update>
+
+	<!-- 파라미터 -->
+	<delete id="deleteContact" parameterType="java.lang.String">
+		DELETE FROM contacts WHERE c_Phone = #{c_Phone} AND u_Id = #{u_Id}
+	</delete>
+	
+
+	<!-- DTO  -->
+	<delete id="deleteContact1" parameterType="java.util.Map">
+		DELETE FROM contacts WHERE c_Phone = #{c_Phone} AND u_Id = #{u_Id}
+	</delete>
+</mapper>

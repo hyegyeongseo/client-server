@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.chichi.pamback.users.UsersDAO">
+
+    <resultMap id="UserResultMap" type="team.chichi.pamback.users.UsersDTO">
+        <id property="u_Id" column="u_Id" />
+        <result property="u_Pw" column="u_Pw" />
+        <result property="u_Name" column="u_Name" />
+        <result property="u_Phone" column="u_Phone" />
+        <result property="u_Email" column="u_Email" />
+        <result property="u_Address" column="u_Address" />
+        <result property="u_DetailAdd" column="u_DetailAdd" />
+        <result property="u_ExtraAdd" column="u_ExtraAdd" />
+    </resultMap>
+
+    <select id="getUserById" parameterType="java.lang.String" resultMap="UserResultMap">
+        SELECT * FROM user WHERE u_Id = #{u_Id}
+    </select>
+
+    <select id="getAllUsers" resultMap="UserResultMap">
+        SELECT * FROM user
+    </select>
+
+    <insert id="insertUser" parameterType="team.chichi.pamback.users.UsersDTO">
+        INSERT INTO user (u_Id, u_Pw, u_Name, u_Phone, u_Email, u_Address, u_DetailAdd, u_ExtraAdd)
+        VALUES (#{u_Id}, #{u_Pw}, #{u_Name}, #{u_Phone}, #{u_Email}, #{u_Address}, #{u_DetailAdd}, #{u_ExtraAdd})
+    </insert>
+
+    <update id="updateUser" parameterType="team.chichi.pamback.users.UsersDTO">
+        UPDATE user
+        SET u_Pw = #{u_Pw}, u_Name = #{u_Name}, u_Phone = #{u_Phone}, 
+            u_Email = #{u_Email}, u_Address = #{u_Address}, u_DetailAdd = #{u_DetailAdd}, u_ExtraAdd = #{u_ExtraAdd}
+        WHERE u_Id = #{u_Id}
+    </update>
+
+	<!-- 파라미터 -->
+    <delete id="deleteUser" parameterType="java.lang.String">
+        DELETE FROM user WHERE u_Id = #{u_Id}
+    </delete>
+    
+    <!-- DTO -->
+    <delete id="deleteUserDTO" parameterType="java.util.Map">
+        DELETE FROM user WHERE u_Id = #{u_Id}
+    </delete>
+
+</mapper>
